@@ -30,6 +30,9 @@
 
 #define IS_RAMPS_EFB
 
+#define FAN1_PIN             7        // modified added
+#define CONTROLLER_FAN_PIN FAN1_PIN   // modified added, Pin used for the fan to cool steppers
+
 #define FAN2_PIN             44
 #define ORIG_E0_AUTO_FAN_PIN 44
 
