@@ -1,6 +1,6 @@
 #ifdef ARDUINO_ARCH_SAM
 
-#include "../persistent_store_api.h"
+#include "../shared/persistent_store_api.h"
 
 #include "../../inc/MarlinConfig.h"
 
@@ -11,14 +11,12 @@ extern void eeprom_flush(void);
 namespace HAL {
 namespace PersistentStore {
 
-bool access_start() {
-  return true;
-}
+bool access_start() { return true; }
 
-bool access_finish(){
-#if DISABLED(I2C_EEPROM) && DISABLED(SPI_EEPROM)
-  eeprom_flush();
-#endif
+bool access_finish() {
+  #if DISABLED(I2C_EEPROM) && DISABLED(SPI_EEPROM)
+    eeprom_flush();
+  #endif
   return true;
 }
 
