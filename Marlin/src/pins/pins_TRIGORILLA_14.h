@@ -33,4 +33,8 @@
 #define FAN2_PIN             44
 #define ORIG_E0_AUTO_FAN_PIN 44
 
+#define X_CS_PIN 4
+#define Y_CS_PIN 5
+#define Z_CS_PIN 6
+
 #include "pins_RAMPS.h"
