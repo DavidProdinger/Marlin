@@ -1,10 +1,9 @@
 /**
  * Marlin 3D Printer Firmware
- *
  * Copyright (C) 2016 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
- * Copyright (c) 2016 Bob Cousins bobcousins42@googlemail.com
- * Copyright (c) 2015-2016 Nico Tonnhofer wurstnase.reprap@gmail.com
- * Copyright (c) 2016 Victor Perez victor_pv@hotmail.com
+ *
+ * Based on Sprinter and grbl.
+ * Copyright (C) 2011 Camiel Gubbels / Erik van der Zalm
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,11 +19,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "../inc/MarlinConfigPre.h"
 
-#if ENABLED(EEPROM_SETTINGS)
+#pragma once
 
-  #include "shared/persistent_store_api.h"
-  PersistentStore persistentStore;
+#include "HAL.h"
 
-#endif
+// Arduino Due core now has watchdog support
+
+void watchdog_init();
+
+inline void watchdog_reset() {
+  // Watchdog refresh sequence
+  WDOG_REFRESH = 0xA602;
+  WDOG_REFRESH = 0xB480;
+}

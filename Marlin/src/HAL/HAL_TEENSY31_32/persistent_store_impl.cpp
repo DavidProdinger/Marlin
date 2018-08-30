@@ -1,10 +1,10 @@
-#ifdef __AVR__
-
-#include "../shared/persistent_store_api.h"
+#ifdef __MK20DX256__
 
 #include "../../inc/MarlinConfig.h"
 
 #if ENABLED(EEPROM_SETTINGS)
+
+#include "../persistent_store_api.h"
 
 namespace HAL {
 namespace PersistentStore {
@@ -41,11 +41,11 @@ bool read_data(int &pos, uint8_t* value, uint16_t size, uint16_t *crc, const boo
     pos++;
     value++;
   } while (--size);
-  return false;  // always assume success for AVR's
+  return false;
 }
 
-}
-}
+} // PersistentStore
+} // HAL
 
 #endif // EEPROM_SETTINGS
-#endif // __AVR__
+#endif // __MK20DX256__
